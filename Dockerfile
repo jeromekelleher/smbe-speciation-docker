@@ -33,8 +33,5 @@ RUN pip install msprime tsinfer pyslim
 RUN pip install nbgitpuller
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
 
-# Clone gIMble
-RUN git clone https://github.com/DRL/gIMble.git
-
 RUN fix-permissions /home/jovyan
 USER $NB_UID
