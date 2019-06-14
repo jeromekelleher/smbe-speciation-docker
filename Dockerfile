@@ -26,8 +26,8 @@ RUN conda install --quiet --yes \
     -c bioconda pysam \
     && conda clean -tipsy 
 
-RUN pip install --pre --upgrade tskit
-RUN pip install msprime tsinfer pyslim
+RUN pip install --upgrade --pre tskit
+RUN pip install msprime tsinfer pyslim tszip
 
 # nbgitpuller to pull in data files, images etc.
 RUN pip install nbgitpuller
