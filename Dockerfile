@@ -26,12 +26,16 @@ RUN conda install --quiet --yes \
     -c bioconda pysam \
     && conda clean -tipsy 
 
-RUN pip install --upgrade --pre tskit
+RUN pip install --upgrade --pre tskit==0.2.0a3
 RUN pip install msprime tsinfer pyslim tszip
 
 # nbgitpuller to pull in data files, images etc.
 RUN pip install nbgitpuller
 RUN jupyter serverextension enable --py nbgitpuller --sys-prefix
+
+RUN cd /tmp && wget https://www.dropbox.com/s/hhz959alniylfpm/hmel.chr18.tar.gz \
+    && mkdir -p /data/hmel.chr18 && cd /data/hmel.chr18 && tar -zxvf /tmp/hmel.chr18.tar.gz && \
+    rm -fR /tmp/hmel.chr18.tar.gz
 
 RUN fix-permissions /home/jovyan
 USER $NB_UID
